@@ -221,4 +221,4 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,visualstudiocode,vivado,xilinxvivado,alteraquartusii
 
 ## Verilator specific things
-**/obj_dir/**
+*/obj_dir/**
