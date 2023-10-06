@@ -1,9 +1,9 @@
-all: video_signal_generator
+all: hvsync_generator
 
-video_signal_generator: 
-	make -C video_signal_generator
+hvsync_generator: 
+	make -C video_signal_generator all
 
-.PHONY: clean
+.PHONY: clean 
 
 clean:
 	make -C video_signal_generator clean
