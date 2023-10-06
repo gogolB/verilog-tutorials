@@ -1,7 +1,7 @@
 all: hvsync-generator
 
 hvsync-generator: 
-	make -C hvsync_generator all
+	make -C hvsync_generator
 
 .PHONY: clean 
 
