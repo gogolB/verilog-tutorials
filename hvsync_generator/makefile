@@ -1,11 +1,16 @@
-all: verilate build
+all: obj_dir build
 
-verilate:
-	verilator --cc hvsync_generator.v;
-	verilator -Wall --trace -cc hvsync_generator.v --exe tb_hvsync_generator.cpp;
+verilog_files := $(wildcard *.v)
+test_bench_files := $(wildcard *.cpp)
+obj_build_file := $(patsubst  %.v, V%.mk, $(verilog_files))
+build_target := $(patsubst  %.v, V%, $(verilog_files))
 
-build:
-	make -C obj_dir -f Vhvsync_generator.mk Vhvsync_generator; 
+obj_dir: $(verilog_files) $(test_bench_files)
+	verilator --cc $(verilog_files);
+	verilator -Wall --trace -cc $(verilog_files) --exe $(test_bench_files);
+
+build: obj_dir
+	make -C obj_dir -f $(obj_build_file) $(build_target); 
 
 .PHONY: clean
 
