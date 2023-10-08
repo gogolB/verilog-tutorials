@@ -2,14 +2,14 @@
 #include <iostream>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
-#include "Vtest_video_signal_generator_top.h"
-#include "Vtest_video_signal_generator_top___024root.h"
+#include "Vtop.h"
+#include "Vtop___024root.h"
 
 #define MAX_SIM_TIME 1000000
 vluint64_t sim_time = 0;
 
 int main(int argc, char** argv, char** env) {
-    Vhvsync_generator *dut = new Vhvsync_generator;
+    Vtop *dut = new Vtop;
 
     Verilated::traceEverOn(true);
     VerilatedVcdC *m_trace = new VerilatedVcdC;

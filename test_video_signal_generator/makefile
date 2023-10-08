@@ -1,11 +1,7 @@
-all: verilate build
+all: obj_dir build
 
 verilog_files := $(wildcard *.v)
-verilog_top_file := $(wildcard *_top.v)
 cpp_files := $(wildcard *.cpp)
-
-build_top_file := $(patsubst  %_top.v, V%_top.mk, $(verilog_top_file))
-build_top_target := $(patsubst  %_top.v, V%_top, $(verilog_top_file))
 
 VERILATED_FILES := $(patsubst  %.v, obj_dir/V%.h, $(verilog_files))
 
@@ -14,11 +10,11 @@ obj_dir/V%.h: %.v
 
 verilate: $(VERILATED_FILES)
 
-obj_dir: $(verilog_files) $(test_bench_files)
-	verilator -Wall --trace --cc --exe $(test_bench_files);
+obj_dir:
+	verilator -Wall --trace --cc --exe top.v $(cpp_files);
 
 build: obj_dir
-	make -C obj_dir -f $(build_top_file) $(build_top_target); 
+	make -C obj_dir -f Vtop.mk Vtop; 
 
 .PHONY: clean
 

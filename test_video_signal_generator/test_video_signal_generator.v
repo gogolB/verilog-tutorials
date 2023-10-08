@@ -1,5 +1,6 @@
 `include "hvsync_generator.v"
-module test_video_signal_generator_top (clk, reset, hsync, vsync, rgb);
+module test_video_signal_generator (clk, reset, hsync, vsync, rgb);
+
 input wire clk, reset;
 output wire hsync, vsync;
 output wire [2:0] rgb;
